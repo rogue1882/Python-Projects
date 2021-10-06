@@ -4,10 +4,7 @@
 #
 #Purpose:
 
-
-
-
-
+import winsound
 
 
 def start(nice = 0,mean = 0,name = ""):
@@ -78,7 +75,7 @@ def win(nice,mean,name):
 
 def lose(nice,mean,name):
     # Substitute the {} wildcards with our values
-    print(Fore.RED + "\nAhhh too bad, game over! \n{}, you live in a dirty beat-up \nvan by the river, wretched and alone!".format(name))
+    print("\nAhhh too bad, game over! \n{}, you live in a dirty beat-up \nvan by the river, wretched and alone!".format(name))
     # call again function and pass in our variables
     again(nice,mean,name)
 
@@ -94,6 +91,8 @@ def again(nice,mean,name):
             reset(nice,mean,name)
         if choice == "n":
             print("\nOh, so sad, sorry to see you go!")
+            #Added sound
+            winsound.PlaySound("SystemExit", winsound.SND_ALIAS)
             stop = False
             quit()
         else:
