@@ -2,7 +2,7 @@
 class User:
     name = "Mark"
     email = "mark@gmail.com"
-    passwork = "1234abcd"
+    password = "1234abcd"
 
     def getLoginInfo(self):
         entry_name = input("Enter your name: ")
@@ -39,8 +39,8 @@ class Contractor(User):
     def getLoginInfo(self):
         entry_name = input("Enter your name: ")
         entry_email = input("Enter your email: ")
-        entry_pinContractor_id = input("Enter your Contractor ID: ")
-        if (entry_email == self.email and entry_pin == self.Contractor_id):
+        entry_Contractor_id = input("Enter your Contractor ID: ")
+        if (entry_email == self.email and entry_Contractor_id == self.Contractor_id):
             print("Welcome back, {}!".format(entry_name))
 
         else:
