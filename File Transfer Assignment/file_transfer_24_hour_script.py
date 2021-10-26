@@ -12,7 +12,7 @@ def GetFileList(path, type):
     
     return glob.glob(path + "*" + type)
 
-originPath = "C:/Users/rogue/OneDrive/Desktop/Python-Projects/File Transfer Assignment/Folder B\\"
+originPath = "C:/Users/rogue/OneDrive/Desktop/Python-Projects/File Transfer Assignment/Folder A\\"
 destinationPath = "C:/Users/rogue/OneDrive/Desktop/Python-Projects/File Transfer Assignment/Daily Files\\"
 fileType = ".txt"
 
@@ -32,4 +32,4 @@ for file in fileList:
 
     # If the file was edited less then 24 hours ago then copy it
     if modifyDateLimit > todaysDate:
-        shutil.copy2(file, destinationPath + filename)
+        shutil.move(file, destinationPath + filename)

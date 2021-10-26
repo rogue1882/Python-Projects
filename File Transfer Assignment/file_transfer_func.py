@@ -76,30 +76,35 @@ def GetDailyFiles( path, type):
     
     return glob.glob(path + "*" + type)
 
-    type = endswith("txt")
 
     
-    
+    source = self.txt_sfile.get()
+    source_file = os.path.join(source, file)
+
+    destination = self.txt_dfile.get()
+    destination_file = os.path.join(destination, file)
+
+    fileType = ".txt"
 
 
 
     # Create list of text filenames in Origin folder
-    fileList = GetDailyFiles(sourcepath, type)
+    fileList = GetDailyFiles(source_file, fileType)
 
     for file in fileList:
         # Get last modified date and today's date
         modifyDate = datetime.datetime.fromtimestamp(os.path.getmtime(file))
         todaysDate = datetime.datetime.today()
         
-        filePathList = self.sourcepath
-        filename = filePathList # The last element is the filename
+        filePathList = source_file
+        filename = filePathList[-1] # The last element is the filename
         
         # If modified within last 24 hours, then copy to destination folder
         modifyDateLimit = modifyDate + datetime.timedelta(days=1)
 
         # If the file was edited less then 24 hours ago then move it
         if modifyDateLimit > todaysDate:
-            shutil.move(file, destinationpath + filename)
+            shutil.move(file, destination_file + filename)
 
         
         
