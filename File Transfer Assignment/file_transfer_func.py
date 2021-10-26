@@ -40,14 +40,48 @@ def ask_quit(self):
    
     
 
+
+
+
+
+def choose_location_source(self):
+        """
+        Shows a popup window to select a directory to choose save the lists generated. then sends the path to
+        GetDailtFiles Origin."""
+
+
+        sourcepath = fd.askdirectory(title="Choose directory",
+                                       initialdir="\home",
+                                       mustexist=True)
+        self.files_location = sourcepath
+        print(sourcepath)
+        varA = sourcepath
+        
+       
+
+
+
+def choose_location_destination(self):
+        """
+        Shows a popup window to select a directory to choose save the lists generated. then sends the path to
+        GetDailyFiles Destination."""
+
+
+        destinationpath = fd.askdirectory(title="Choose directory",
+                                       initialdir="\home",
+                                       mustexist=True)
+        self.files_location = destinationpath
+        print(destinationpath)
+        varB = destinationpath
+
 def GetDailyFiles( path, type):
     
     #Return a list of filename matching the given path and file type
     
     return glob.glob(path + "*" + type)
 
-originPath = "path"
-destinationPath = "path"
+originPath = "C:/Users/rogue/OneDrive/Desktop/Python-Projects/File Transfer Assignment/Folder B\\"
+destinationPath = "C:/Users/rogue/OneDrive/Desktop/Python-Projects/File Transfer Assignment/Folder A\\"
 fileType = ".txt"
 
 # Create list of text filenames in Origin folder
@@ -67,41 +101,6 @@ for file in fileList:
     # If the file was edited less then 24 hours ago then copy it
     if modifyDateLimit > todaysDate:
         shutil.copy2(file, destinationPath + filename)
-
-
-def browse_button():
-    # Allow user to select a directory and store it in global var
-    # called folder_path
-    global folder_path
-    filename = filedialog.askdirectory()
-    folder_path.set(filename)
-    print(filename)
-
-def choose_location_source(self):
-        """
-        Shows a popup window to select a directory to choose save the lists generated. then sends the path to
-        GetDailtFiles Origin."""
-
-
-        path = filedialog.askdirectory(title="Choose directory",
-                                       initialdir="\home",
-                                       mustexist=True)
-        self.files_location = path
-        originPath(self.files_location)
-
-
-
-def choose_location_destination(self):
-        """
-        Shows a popup window to select a directory to choose save the lists generated. then sends the path to
-        GetDailyFiles Destination."""
-
-
-        path = filedialog.askdirectory(title="Choose directory",
-                                       initialdir="\home",
-                                       mustexist=True)
-        self.files_location = path
-        destinationPath(self.files_location)
         
         
 
