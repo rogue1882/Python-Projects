@@ -76,13 +76,15 @@ def GetDailyFiles( path, type):
     
     return glob.glob(path + "*" + type)
 
+    type = endswith("txt")
+
     
     
 
 
 
     # Create list of text filenames in Origin folder
-    fileList = GetDailyFiles(self.txt_sfile, type)
+    fileList = GetDailyFiles(sourcepath, type)
 
     for file in fileList:
         # Get last modified date and today's date
@@ -97,7 +99,7 @@ def GetDailyFiles( path, type):
 
         # If the file was edited less then 24 hours ago then move it
         if modifyDateLimit > todaysDate:
-            shutil.move(file, self.txt_dfile + filename)
+            shutil.move(file, destinationpath + filename)
 
         
         

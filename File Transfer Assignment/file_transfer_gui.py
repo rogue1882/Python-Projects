@@ -14,9 +14,9 @@ import file_transfer_func
 
 def load_gui(self):
    
-    self.btn_sfile = tk.Button(self.master,text='Source File Name:',command=lambda: file_transfer_func.choose_location_source(self))
+    self.btn_sfile = tk.Button(self.master,text='Source Folder Name:',command=lambda: file_transfer_func.choose_location_source(self))
     self.btn_sfile.grid(row=0,column=0,padx=(27,0),pady=(10,10),sticky=N+W)
-    self.btn_dfile = tk.Button(self.master,text='Destination File Name:',command=lambda: file_transfer_func.choose_location_destination(self))
+    self.btn_dfile = tk.Button(self.master,text='Destination Folder Name:',command=lambda: file_transfer_func.choose_location_destination(self))
     self.btn_dfile.grid(row=2,column=0,padx=(27,0),pady=(10,10),sticky=N+W)
 
 
@@ -29,7 +29,7 @@ def load_gui(self):
     
 
     
-    self.btn_filelist = tk.Button(self.master,width=12,height=2,text='File list',command=lambda: file_transfer_func.GetDailyFiles)
+    self.btn_filelist = tk.Button(self.master,width=12,height=2,text='File Transfer',command=lambda: file_transfer_func.GetDailyFiles)
     self.btn_filelist.grid(row=8,column=1,padx=(15,0),pady=(45,10),sticky=W)
     self.btn_close = tk.Button(self.master,width=12,height=2,text='Close',command=lambda: file_transfer_func.ask_quit(self))
     self.btn_close.grid(row=8,column=4,columnspan=1,padx=(15,0),pady=(45,10),sticky=E)
