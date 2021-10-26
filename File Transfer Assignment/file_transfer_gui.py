@@ -18,12 +18,14 @@ def load_gui(self):
     self.btn_sfile.grid(row=0,column=0,padx=(27,0),pady=(10,10),sticky=N+W)
     self.btn_dfile = tk.Button(self.master,text='Destination File Name:',command=lambda: file_transfer_func.choose_location_destination(self))
     self.btn_dfile.grid(row=2,column=0,padx=(27,0),pady=(10,10),sticky=N+W)
-  
 
-    self.txt_sfile = tk.Entry(self.master,text= 'varA')
+
+    self.txt_sfile = tk.Entry(self.master,text= '')
     self.txt_sfile.grid(row=1,column=0,rowspan=1,columnspan=2,padx=(30,40),pady=(0,0),sticky=N+E+W)
     self.txt_dfile = tk.Entry(self.master,text='')
     self.txt_dfile.grid(row=3,column=0,rowspan=1,columnspan=2,padx=(30,40),pady=(0,0),sticky=N+E+W)
+  
+
     
 
     

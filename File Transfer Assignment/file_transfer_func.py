@@ -37,11 +37,6 @@ def ask_quit(self):
         os._exit(0)
   
 
-   
-    
-
-
-
 
 
 def choose_location_source(self):
@@ -50,14 +45,14 @@ def choose_location_source(self):
         GetDailtFiles Origin."""
 
 
-        sourcepath = fd.askdirectory(title="Choose directory",
+        self.sourcepath = fd.askdirectory(title="Choose directory",
                                        initialdir="\home",
                                        mustexist=True)
-        self.files_location = sourcepath
-        print(sourcepath)
-        varA = sourcepath
+
+
+        self.txt_sfile.insert(0, self.sourcepath)
+
         
-       
 
 
 
@@ -67,12 +62,13 @@ def choose_location_destination(self):
         GetDailyFiles Destination."""
 
 
-        destinationpath = fd.askdirectory(title="Choose directory",
+        self.destinationpath = fd.askdirectory(title="Choose directory",
                                        initialdir="\home",
                                        mustexist=True)
-        self.files_location = destinationpath
-        print(destinationpath)
-        varB = destinationpath
+
+        self.txt_dfile.insert(0, self.destinationpath)
+        
+       
 
 def GetDailyFiles( path, type):
     
@@ -80,27 +76,29 @@ def GetDailyFiles( path, type):
     
     return glob.glob(path + "*" + type)
 
-originPath = "C:/Users/rogue/OneDrive/Desktop/Python-Projects/File Transfer Assignment/Folder B\\"
-destinationPath = "C:/Users/rogue/OneDrive/Desktop/Python-Projects/File Transfer Assignment/Folder A\\"
-fileType = ".txt"
-
-# Create list of text filenames in Origin folder
-fileList = GetDailyFiles(originPath, fileType)
-
-for file in fileList:
-    # Get last modified date and today's date
-    modifyDate = datetime.datetime.fromtimestamp(os.path.getmtime(file))
-    todaysDate = datetime.datetime.today()
     
-    filePathList = file.split("\\") # Create a list from the filepath
-    filename = filePathList[-1] # The last element is a the filename
     
-    # If modified within last 24 hours, then copy to destination folder
-    modifyDateLimit = modifyDate + datetime.timedelta(days=1)
 
-    # If the file was edited less then 24 hours ago then copy it
-    if modifyDateLimit > todaysDate:
-        shutil.copy2(file, destinationPath + filename)
+
+
+    # Create list of text filenames in Origin folder
+    fileList = GetDailyFiles(self.txt_sfile, type)
+
+    for file in fileList:
+        # Get last modified date and today's date
+        modifyDate = datetime.datetime.fromtimestamp(os.path.getmtime(file))
+        todaysDate = datetime.datetime.today()
+        
+        filePathList = self.sourcepath
+        filename = filePathList # The last element is the filename
+        
+        # If modified within last 24 hours, then copy to destination folder
+        modifyDateLimit = modifyDate + datetime.timedelta(days=1)
+
+        # If the file was edited less then 24 hours ago then move it
+        if modifyDateLimit > todaysDate:
+            shutil.move(file, self.txt_dfile + filename)
+
         
         
 
