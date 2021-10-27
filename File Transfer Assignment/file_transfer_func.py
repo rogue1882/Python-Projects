@@ -49,7 +49,7 @@ def choose_location_source(self):
                                        initialdir="\home",
                                        mustexist=True)
 
-
+        #add path to text box
         self.txt_sfile.insert(0, self.sourcepath)
 
         
@@ -65,46 +65,38 @@ def choose_location_destination(self):
         self.destinationpath = fd.askdirectory(title="Choose directory",
                                        initialdir="\home",
                                        mustexist=True)
-
+        #add path to text box
         self.txt_dfile.insert(0, self.destinationpath)
         
        
 
-def GetDailyFiles( path, type):
-    
-    #Return a list of filename matching the given path and file type
-    
-    return glob.glob(path + "*" + type)
-
-
-    
+def GetDailyFiles(self):
+    #gets the path to source folder 
     source = self.txt_sfile.get()
-    source_file = os.path.join(source, file)
-
+    
+    #gets the path to destination folder
     destination = self.txt_dfile.get()
-    destination_file = os.path.join(destination, file)
 
-    fileType = ".txt"
+    # Create list of text filenames in source folder
+    fileList = os.listdir(source)
 
-
-
-    # Create list of text filenames in Origin folder
-    fileList = GetDailyFiles(source_file, fileType)
-
+    #iterates through the list of files
     for file in fileList:
-        # Get last modified date and today's date
-        modifyDate = datetime.datetime.fromtimestamp(os.path.getmtime(file))
-        todaysDate = datetime.datetime.today()
-        
-        filePathList = source_file
-        filename = filePathList[-1] # The last element is the filename
-        
-        # If modified within last 24 hours, then copy to destination folder
-        modifyDateLimit = modifyDate + datetime.timedelta(days=1)
 
+        """ Joins the source folder and file name
+        to get absolute path"""
+        source_file = os.path.join(source, file)
+
+        # Get last modified date and time
+        modifyDate = datetime.datetime.fromtimestamp(os.path.getmtime(source_file))
+        # gets the current date and time
+        todaysDate = datetime.datetime.now()
+        # gets the current date and tiem 24 hours ago
+        twentyfour = todaysDate - datetime.timedelta(hours=24)
+ 
         # If the file was edited less then 24 hours ago then move it
-        if modifyDateLimit > todaysDate:
-            shutil.move(file, destination_file + filename)
+        if modifyDate > twentyfour:
+            shutil.move(source_file, destination)
 
         
         

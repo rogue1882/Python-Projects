@@ -29,7 +29,7 @@ def load_gui(self):
     
 
     
-    self.btn_filelist = tk.Button(self.master,width=12,height=2,text='File Transfer',command=lambda: file_transfer_func.GetDailyFiles)
+    self.btn_filelist = tk.Button(self.master,width=12,height=2,text='File Transfer',command=lambda: file_transfer_func.GetDailyFiles(self))
     self.btn_filelist.grid(row=8,column=1,padx=(15,0),pady=(45,10),sticky=W)
     self.btn_close = tk.Button(self.master,width=12,height=2,text='Close',command=lambda: file_transfer_func.ask_quit(self))
     self.btn_close.grid(row=8,column=4,columnspan=1,padx=(15,0),pady=(45,10),sticky=E)
