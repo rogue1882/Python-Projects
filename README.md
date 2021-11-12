@@ -2,7 +2,9 @@
 These are basic projects written in Python.  They use various modules such has tkinter or sqlite3.
 
 Projects:
+
 Phonebook
+
 Check Files Gui
 
 Phonebook
